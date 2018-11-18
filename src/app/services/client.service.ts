@@ -1,6 +1,6 @@
+import { Client } from './../models/client';
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {Client} from '../models/client';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 @Injectable()
@@ -33,9 +33,9 @@ export class ClientService {
   }
 
   // DEMO ONLY, you can find working methods below
-  addClient (client: Client): void {
+/* addClient (client: Client): void {
     this.dialogData = client;
-  }
+  }*/
 
   updateClient (client: Client): void {
     this.dialogData = client;
@@ -44,5 +44,16 @@ export class ClientService {
   deleteClient (id: number): void {
     console.log(id);
   }
+
+  addClient(client: Client): void {
+    this.httpClient.post(this.API_URL, client).subscribe(data => {
+      this.dialogData = client;
+     // this.toasterService.showToaster('Successfully added', 3000);
+      },
+      (err: HttpErrorResponse) => {
+        console.error('error while add client');
+     // this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+    });
+   }
 
 }

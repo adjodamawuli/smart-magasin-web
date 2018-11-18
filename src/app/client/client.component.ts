@@ -1,10 +1,11 @@
+import { AddClientDialogComponent } from './../add-client-dialog/add-client-dialog.component';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ClientService} from './../services/client.service';
 import {HttpClient} from '@angular/common/http';
 import {MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {Client} from './../models/client';
 import {DataSource} from '@angular/cdk/collections';
-import {AddDialogComponent} from './../dialogs/add/add.dialog.component';
+
 import {EditDialogComponent} from './../dialogs/edit/edit.dialog.component';
 import {DeleteDialogComponent} from './../dialogs/delete/delete.dialog.component';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
@@ -16,7 +17,7 @@ import {map} from 'rxjs/operators';
 })
 export class ClientComponent implements OnInit {
 
-  displayedColumns = ['id', 'nom', 'actions'];
+  displayedColumns = ['id', 'nom', 'prenom', 'tel', 'actions'];
   exampleDatabase: ClientService | null;
   dataSource: ExampleDataSource | null;
   index: number;
@@ -39,7 +40,8 @@ export class ClientComponent implements OnInit {
   }
 
   addNew(client: Client) {
-    const dialogRef = this.dialog.open(AddDialogComponent, {
+    console.log('===================add client ======================');
+    const dialogRef = this.dialog.open(AddClientDialogComponent, {
       data: {client: client }
     });
 
@@ -74,7 +76,7 @@ export class ClientComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, id: number, nom: string) {
+  deleteItem(i: number, id: number, nom: string, prenom: string, tel: string) {
     this.index = i;
     this.id = id;
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
@@ -173,7 +175,7 @@ export class ExampleDataSource extends DataSource<Client> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((client: Client) => {
-          const searchStr = (client.id + client.nom).toLowerCase();
+          const searchStr = (client.id + client.nom + client.prenom + client.tel).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -204,6 +206,8 @@ export class ExampleDataSource extends DataSource<Client> {
       switch (this._sort.active) {
         case 'id': [propertyA, propertyB] = [a.id, b.id]; break;
         case 'nom': [propertyA, propertyB] = [a.nom, b.nom]; break;
+        case 'prenom': [propertyA, propertyB] = [a.prenom, b.prenom]; break;
+        case 'tel': [propertyA, propertyB] = [a.tel, b.tel]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

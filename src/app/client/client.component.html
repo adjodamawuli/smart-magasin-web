@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span>Smart Magasin</span>
+  <span>Smart Manager</span>
   <span class="spacer"></span>
   Recharger la table:
   <button mat-icon-button (click)="refresh()">
@@ -11,7 +11,7 @@
 
   <div class="form">
     <mat-form-field floatPlaceholder="never" color="accent">
-      <input matInput #filter placeholder="Filter issues">
+      <input matInput #filter placeholder="Filter clients">
     </mat-form-field>
   </div>
 
@@ -26,11 +26,21 @@
       <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="prenom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Prénom</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.prenom}}</mat-cell>
+    </ng-container>
     <ng-container matColumnDef="nom">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.nom}}</mat-cell>
     </ng-container>
 
+
+
+    <ng-container matColumnDef="tel">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Téléphone</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.tel}}</mat-cell>
+    </ng-container>
 
     <!-- actions -->
     <ng-container matColumnDef="actions">

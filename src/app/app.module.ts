@@ -17,6 +17,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FactureComponent } from './facture/facture.component';
 import { ClientComponent } from './client/client.component';
 import {ClientService} from './services/client.service';
+import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.component';
 
 
 @NgModule({
@@ -24,10 +25,10 @@ import {ClientService} from './services/client.service';
     AppComponent,
     AddDialogComponent,
     EditDialogComponent,
-    DeleteDialogComponent
-,
+    DeleteDialogComponent,
     FactureComponent,
-    ClientComponent
+    ClientComponent,
+    AddClientDialogComponent
 ],
   imports: [
     BrowserModule,
@@ -47,7 +48,8 @@ import {ClientService} from './services/client.service';
   entryComponents: [
     AddDialogComponent,
     EditDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    AddClientDialogComponent
   ],
   providers: [
     DataService,
