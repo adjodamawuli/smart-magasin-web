@@ -1,3 +1,5 @@
+import { EditClientDialogComponent } from './../edit-client-dialog/edit-client-dialog.component';
+import { DeleteClientDialogComponent } from './../delete-client-dialog/delete-client-dialog.component';
 import { AddClientDialogComponent } from './../add-client-dialog/add-client-dialog.component';
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ClientService} from './../services/client.service';
@@ -55,13 +57,13 @@ export class ClientComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, id: number, nom: string) {
+  startEdit(i: number, id: number, nom: string, prenom: string, tel: string) {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
-    const dialogRef = this.dialog.open(EditDialogComponent, {
-      data: {id: id, nom: nom}
+    const dialogRef = this.dialog.open(EditClientDialogComponent, {
+      data: {id: id, nom: nom, prenom: prenom, tel: tel}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -79,8 +81,8 @@ export class ClientComponent implements OnInit {
   deleteItem(i: number, id: number, nom: string, prenom: string, tel: string) {
     this.index = i;
     this.id = id;
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: {id: id, nom: nom}
+    const dialogRef = this.dialog.open(DeleteClientDialogComponent, {
+      data: {id: id, nom: nom, prenom: prenom, tel: tel}
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -18,6 +18,8 @@ import { FactureComponent } from './facture/facture.component';
 import { ClientComponent } from './client/client.component';
 import {ClientService} from './services/client.service';
 import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.component';
+import { DeleteClientDialogComponent } from './delete-client-dialog/delete-client-dialog.component';
+import { EditClientDialogComponent } from './edit-client-dialog/edit-client-dialog.component';
 
 
 @NgModule({
@@ -29,6 +31,10 @@ import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.
     FactureComponent,
     ClientComponent,
     AddClientDialogComponent
+,
+    DeleteClientDialogComponent
+,
+    EditClientDialogComponent
 ],
   imports: [
     BrowserModule,
@@ -49,7 +55,9 @@ import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.
     AddDialogComponent,
     EditDialogComponent,
     DeleteDialogComponent,
-    AddClientDialogComponent
+    AddClientDialogComponent,
+    DeleteClientDialogComponent,
+    EditClientDialogComponent
   ],
   providers: [
     DataService,

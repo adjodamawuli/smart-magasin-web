@@ -1,0 +1,18 @@
+<div class="container">
+  <h3 mat-dialog-title>Confirmer la suppression </h3>
+  <div mat-dialog-content>
+    Id: {{data.id}}
+    <p></p>
+    Nom: {{data.nom}}
+    <p></p>
+    Prénom: {{data.prenom}}
+    <p></p>
+    Téléphone: {{data.tel}}
+    <p></p>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">Supprimer</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Annuler</button>
+  </div>
+</div>
