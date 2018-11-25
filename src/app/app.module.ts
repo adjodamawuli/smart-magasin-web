@@ -1,6 +1,7 @@
+import { UserService } from './services/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -20,7 +21,13 @@ import {ClientService} from './services/client.service';
 import { AddClientDialogComponent } from './add-client-dialog/add-client-dialog.component';
 import { DeleteClientDialogComponent } from './delete-client-dialog/delete-client-dialog.component';
 import { EditClientDialogComponent } from './edit-client-dialog/edit-client-dialog.component';
+import { LoginComponent } from './login/login.component';
 
+
+const routes = [
+  { path: 'client', component: ClientComponent},
+  { path: '', component: LoginComponent}
+];
 
 @NgModule({
   declarations: [
@@ -30,11 +37,10 @@ import { EditClientDialogComponent } from './edit-client-dialog/edit-client-dial
     DeleteDialogComponent,
     FactureComponent,
     ClientComponent,
-    AddClientDialogComponent
-,
-    DeleteClientDialogComponent
-,
-    EditClientDialogComponent
+    AddClientDialogComponent,
+    DeleteClientDialogComponent,
+    EditClientDialogComponent,
+    LoginComponent
 ],
   imports: [
     BrowserModule,
@@ -49,7 +55,8 @@ import { EditClientDialogComponent } from './edit-client-dialog/edit-client-dial
     MatTableModule,
     MatToolbarModule,
     MatPaginatorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)
   ],
   entryComponents: [
     AddDialogComponent,
@@ -61,7 +68,8 @@ import { EditClientDialogComponent } from './edit-client-dialog/edit-client-dial
   ],
   providers: [
     DataService,
-    ClientService
+    ClientService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
